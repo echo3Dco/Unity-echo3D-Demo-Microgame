@@ -1,0 +1,344 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.5.2 (swiftlang-1300.0.47.5 clang-1300.0.29.30)
+// swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name NextNavPlus
+import AdSupport
+import Compression
+import CoreLocation
+import CoreMotion
+import CoreTelephony
+import Foundation
+import MapKit
+import Swift
+import SystemConfiguration
+import UIKit
+import _Concurrency
+public enum NNLoggerOutput : Swift.String {
+  case release
+  case none
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum NNManualBarocalMode : Swift.Double {
+  case thirtySeconds
+  case oneMinute
+  case twoMinutes
+  public init?(rawValue: Swift.Double)
+  public typealias RawValue = Swift.Double
+  public var rawValue: Swift.Double {
+    get
+  }
+}
+public enum NNTimerMode : Swift.Int {
+  case barcoalFirstUpload
+  case barocalPreperation
+  case manualBarocalPreperation
+  case zasReferenceData
+  case zasAltitudeCalculation
+  case allTimers
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum NNSDKState : Swift.Int {
+  case authorizationError
+  case authorizationFailure
+  case sdkInitialized
+  case sdkInitializing
+  case pressureInitializing
+  case locationInitializing
+  case noPressureAvailable
+  case noLocationAvailable
+  case sdkAlreadyInitialized
+  case sdkInitializingFailed
+  case sdkNotInitialized
+  case sdkStopped
+  case sdkInvalidURL
+  case sdkRegistrationCompleted
+  case altitudeModeActivated
+  case waitingForPhonePressure
+  case locationWaitingStatus
+  case altitudeModeDeactivated
+  case highDeltaInPressure
+  case highDeltaInLocation
+  case outOfGeofence
+  case inGeofence
+  case unableToReachServer
+  case stalePressure
+  case motionPermissionNotGranted
+  case motionWaitingStatus
+  case manualCalibirationSuccess
+  case manualCalibirationInProgress
+  case manualCalibirationFailed
+  case manualCalibirationLocation
+  case manualCalibirationLocationUncertainty
+  case manualCalibirationInvalidLocationMovemement
+  case manualCalibirationInvalidPhoneMovement
+  case manualCalibirationNotFullyCompleted
+  case manualCalibirationInvalidLocation
+  case locationPermissionNotGranted
+  case noUserIDAvailable
+  case noUsersAvailable
+  case invalidScaleHeight
+  case duplicateUserIDAvailable
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum NNAltitudeMode : Swift.Double {
+  case oneTime
+  case oneSecond
+  case thirtySeconds
+  case oneMinute
+  public init?(rawValue: Swift.Double)
+  public typealias RawValue = Swift.Double
+  public var rawValue: Swift.Double {
+    get
+  }
+}
+public enum NNConsistenyFilter : Swift.Int {
+  case location
+  case activity
+  case pressure
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public typealias NNSDKHandler = (_ code: Swift.Int, _ timeStamp: Swift.Int) -> Swift.Void
+public typealias NNAltitudeHandler = (_ code: Swift.Int?, _ context: NextNavPlus.NNAltitudeContext?) -> Swift.Void
+public typealias NNSDKCompletionHandler = (_ status: Swift.Bool) -> Swift.Void
+public class NNSDK {
+  public init()
+  public static func start(baseURL: Swift.String, secretKey: Swift.String, location: CoreLocation.CLLocation? = nil, success: NextNavPlus.NNSDKHandler?, failure: NextNavPlus.NNSDKHandler?)
+  public static func stop()
+  public static func startAltitudeCalculation(mode: NextNavPlus.NNAltitudeMode, handler: @escaping NextNavPlus.NNAltitudeHandler)
+  public static func stopAltitudeCalculation(handler: @escaping NextNavPlus.NNAltitudeHandler)
+  public static func version() -> Swift.String
+  public static func sdkInitializationStatus() -> (Swift.Bool, Swift.Int)
+  public static func setAltitude(location: CoreLocation.CLLocation? = nil, pressure: Swift.Double? = nil)
+  public static func startBarocalUpload(handler: @escaping NextNavPlus.NNSDKCompletionHandler)
+  public static func startManualCalibration(mode: NextNavPlus.NNManualBarocalMode, location: CoreLocation.CLLocation, floorNumber: Swift.Int? = nil, groundMSLHeight: Swift.Double? = nil, pressure: Swift.Double? = nil)
+  public static func setManualCalibration(location: CoreLocation.CLLocation, floorNumber: Swift.Int? = nil, groundMSLHeight: Swift.Double? = nil, pressure: Swift.Double? = nil)
+  public static func deviceID() -> Swift.String
+  public static func loggerMode(mode: NextNavPlus.NNLoggerOutput)
+  public static func setSDKConsistencyFilters(_ filters: [NextNavPlus.NNConsistenyFilter])
+  @objc deinit
+}
+public enum ReachabilityError : Swift.Error {
+  case failedToCreateWithAddress(Darwin.sockaddr, Swift.Int32)
+  case failedToCreateWithHostname(Swift.String, Swift.Int32)
+  case unableToSetCallback(Swift.Int32)
+  case unableToSetDispatchQueue(Swift.Int32)
+  case unableToGetFlags(Swift.Int32)
+}
+@available(*, unavailable, renamed: "Notification.Name.reachabilityChanged")
+public let ReachabilityChangedNotification: Foundation.NSNotification.Name
+extension Foundation.NSNotification.Name {
+  public static let reachabilityChanged: Foundation.Notification.Name
+}
+public class Reachability {
+  public typealias NetworkReachable = (NextNavPlus.Reachability) -> Swift.Void
+  public typealias NetworkUnreachable = (NextNavPlus.Reachability) -> Swift.Void
+  @available(*, unavailable, renamed: "Connection")
+  public enum NetworkStatus : Swift.CustomStringConvertible, Swift.Equatable {
+    case notReachable, reachableViaWiFi, reachableViaWWAN
+    public var description: Swift.String {
+      get
+    }
+    public func hash(into hasher: inout Swift.Hasher)
+    public static func == (a: NextNavPlus.Reachability.NetworkStatus, b: NextNavPlus.Reachability.NetworkStatus) -> Swift.Bool
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public enum Connection : Swift.CustomStringConvertible {
+    case unavailable, wifi, cellular
+    public var description: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "unavailable")
+    public static let none: NextNavPlus.Reachability.Connection
+    public static func == (a: NextNavPlus.Reachability.Connection, b: NextNavPlus.Reachability.Connection) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public var whenReachable: NextNavPlus.Reachability.NetworkReachable?
+  public var whenUnreachable: NextNavPlus.Reachability.NetworkUnreachable?
+  @available(*, deprecated, renamed: "allowsCellularConnection")
+  final public let reachableOnWWAN: Swift.Bool
+  public var allowsCellularConnection: Swift.Bool
+  public var notificationCenter: Foundation.NotificationCenter
+  @available(*, deprecated, renamed: "connection.description")
+  public var currentReachabilityString: Swift.String {
+    get
+  }
+  @available(*, unavailable, renamed: "connection")
+  public var currentReachabilityStatus: NextNavPlus.Reachability.Connection {
+    get
+  }
+  public var connection: NextNavPlus.Reachability.Connection {
+    get
+  }
+  required public init(reachabilityRef: SystemConfiguration.SCNetworkReachability, queueQoS: Dispatch.DispatchQoS = .default, targetQueue: Dispatch.DispatchQueue? = nil, notificationQueue: Dispatch.DispatchQueue? = .main)
+  convenience public init(hostname: Swift.String, queueQoS: Dispatch.DispatchQoS = .default, targetQueue: Dispatch.DispatchQueue? = nil, notificationQueue: Dispatch.DispatchQueue? = .main) throws
+  convenience public init(queueQoS: Dispatch.DispatchQoS = .default, targetQueue: Dispatch.DispatchQueue? = nil, notificationQueue: Dispatch.DispatchQueue? = .main) throws
+  @objc deinit
+}
+extension NextNavPlus.Reachability {
+  public func startNotifier() throws
+  public func stopNotifier()
+  @available(*, deprecated, message: "Please use `connection != .none`")
+  public var isReachable: Swift.Bool {
+    get
+  }
+  @available(*, deprecated, message: "Please use `connection == .cellular`")
+  public var isReachableViaWWAN: Swift.Bool {
+    get
+  }
+  @available(*, deprecated, message: "Please use `connection == .wifi`")
+  public var isReachableViaWiFi: Swift.Bool {
+    get
+  }
+  public var description: Swift.String {
+    get
+  }
+}
+public struct NNAltitudeUser {
+  public let userID: Swift.String
+  public var name: Swift.String
+  public var imageName: Swift.String?
+  public var imageURL: Swift.String?
+  public var altitudeValue: Swift.Double
+  public var altitudeUncertainty: Swift.Double?
+  public var delete: Swift.Bool
+  public init(userID: Swift.String, name: Swift.String, imageName: Swift.String? = nil, imageURL: Swift.String? = nil, altitudeValue: Swift.Double, altitudeUncertainty: Swift.Double? = nil, currentUser: Swift.Bool = false, delete: Swift.Bool = false)
+}
+public enum NNManualBarocalState : Swift.Int {
+  case calibrationSetup
+  case calibrationStarted
+  case calibrationCancelled
+  case calibrationSuccess
+  case calibrationFailed
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum NNAltimeterMode : Swift.Int {
+  case allUsers
+  case deltaUsers
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum NNAltimeterUnitMode : Swift.String {
+  case feet
+  case meter
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public typealias NNSDKUIManualBarocalHandler = (_ parentController: UIKit.UIViewController) -> Swift.Void
+public typealias NNSDKUIMapHandler = (_ mapContainer: UIKit.UIView, _ location: CoreLocation.CLLocation?, _ state: NextNavPlus.NNManualBarocalState) -> Swift.Void
+public typealias NNSDKUIMapNativeHandler = (_ state: NextNavPlus.NNManualBarocalState) -> Swift.Void
+public typealias NNSDKUIAltimeterHandler = (_ altimeterView: UIKit.UIView?, _ statusMessage: Swift.Int?, _ context: NextNavPlus.NNAltitudeContext?) -> Swift.Void
+public class NNSDKUI {
+  public init()
+  public static func initiateManualBarocalUI(mode: NextNavPlus.NNManualBarocalMode, success: @escaping NextNavPlus.NNSDKUIManualBarocalHandler, mapHandler: @escaping NextNavPlus.NNSDKUIMapHandler)
+  public static func initiateNativeManualBarocalUI(mode: NextNavPlus.NNManualBarocalMode, success: @escaping NextNavPlus.NNSDKUIManualBarocalHandler, mapHandler: @escaping NextNavPlus.NNSDKUIMapNativeHandler)
+  public static func altimeterView(mode: NextNavPlus.NNAltimeterMode, unitMode: NextNavPlus.NNAltimeterUnitMode, users: [NextNavPlus.NNAltitudeUser], scaleHeight: Swift.Double, handler: @escaping NextNavPlus.NNSDKUIAltimeterHandler)
+  public static func showMyLocation(mode: NextNavPlus.NNAltitudeMode, showLocation: Swift.Bool, loggedInUserName: Swift.String? = nil)
+  public static func updateAltimeterUsers(users: [NextNavPlus.NNAltitudeUser])
+  public static func removeAltimeterView()
+  @objc deinit
+}
+public struct NNAltitudeContext {
+  public let height: Swift.Double?
+  public let heightUncertainty: Swift.Double?
+  public let heightUncertainty68: Swift.Double?
+  public let heightAboveTerrain: Swift.Double?
+  public let heightAboveTerrainUncertainty: Swift.Double?
+  public let heightHatUncertainty68: Swift.Double?
+  public let floorNumber: Swift.Int?
+  public let floorConfidence: Swift.Double?
+  public let address: Swift.String?
+  public let addressConfidence: Swift.Double?
+  public let statusCode: Swift.Int?
+  public let errorCode: Swift.Int?
+  public let warningCode: Swift.Int?
+  public let timestampOfAltitude: Swift.Int
+  public let baroCalRequired: Swift.Bool?
+  public let userPressure: Swift.Double?
+}
+extension Foundation.Data {
+  public enum CompressionAlgorithm {
+    case zlib
+    case lzfse
+    case lzma
+    case lz4
+    public static func == (a: Foundation.Data.CompressionAlgorithm, b: Foundation.Data.CompressionAlgorithm) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public func gzip() -> Foundation.Data?
+  public func gunzip() -> Foundation.Data?
+  public func crc32() -> NextNavPlus.Crc32
+}
+public struct Crc32 : Swift.CustomStringConvertible {
+  public init()
+  public var checksum: Swift.UInt32
+  public mutating func advance(withChunk chunk: Foundation.Data)
+  public var description: Swift.String {
+    get
+  }
+}
+extension NextNavPlus.NNLoggerOutput : Swift.Equatable {}
+extension NextNavPlus.NNLoggerOutput : Swift.Hashable {}
+extension NextNavPlus.NNLoggerOutput : Swift.RawRepresentable {}
+extension NextNavPlus.NNManualBarocalMode : Swift.Equatable {}
+extension NextNavPlus.NNManualBarocalMode : Swift.Hashable {}
+extension NextNavPlus.NNManualBarocalMode : Swift.RawRepresentable {}
+extension NextNavPlus.NNTimerMode : Swift.Equatable {}
+extension NextNavPlus.NNTimerMode : Swift.Hashable {}
+extension NextNavPlus.NNTimerMode : Swift.RawRepresentable {}
+extension NextNavPlus.NNSDKState : Swift.Equatable {}
+extension NextNavPlus.NNSDKState : Swift.Hashable {}
+extension NextNavPlus.NNSDKState : Swift.RawRepresentable {}
+extension NextNavPlus.NNAltitudeMode : Swift.Equatable {}
+extension NextNavPlus.NNAltitudeMode : Swift.Hashable {}
+extension NextNavPlus.NNAltitudeMode : Swift.RawRepresentable {}
+extension NextNavPlus.NNConsistenyFilter : Swift.Equatable {}
+extension NextNavPlus.NNConsistenyFilter : Swift.Hashable {}
+extension NextNavPlus.NNConsistenyFilter : Swift.RawRepresentable {}
+@available(*, unavailable, renamed: "Connection")
+extension NextNavPlus.Reachability.NetworkStatus : Swift.Hashable {}
+extension NextNavPlus.Reachability.Connection : Swift.Equatable {}
+extension NextNavPlus.Reachability.Connection : Swift.Hashable {}
+extension NextNavPlus.NNManualBarocalState : Swift.Equatable {}
+extension NextNavPlus.NNManualBarocalState : Swift.Hashable {}
+extension NextNavPlus.NNManualBarocalState : Swift.RawRepresentable {}
+extension NextNavPlus.NNAltimeterMode : Swift.Equatable {}
+extension NextNavPlus.NNAltimeterMode : Swift.Hashable {}
+extension NextNavPlus.NNAltimeterMode : Swift.RawRepresentable {}
+extension NextNavPlus.NNAltimeterUnitMode : Swift.Equatable {}
+extension NextNavPlus.NNAltimeterUnitMode : Swift.Hashable {}
+extension NextNavPlus.NNAltimeterUnitMode : Swift.RawRepresentable {}
+extension Foundation.Data.CompressionAlgorithm : Swift.Equatable {}
+extension Foundation.Data.CompressionAlgorithm : Swift.Hashable {}

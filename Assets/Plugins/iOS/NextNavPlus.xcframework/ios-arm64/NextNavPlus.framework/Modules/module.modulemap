@@ -1,0 +1,4 @@
+framework module NextNavPlus {
+  header "NextNavPlus-Swift.h"
+  requires objc
+}

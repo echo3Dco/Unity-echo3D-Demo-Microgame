@@ -1,0 +1,79 @@
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        // Must be Android Gradle Plugin 3.6.0 or later. For a list of
+        // compatible Gradle versions refer to:
+        // https://developer.android.com/studio/releases/gradle-plugin
+        classpath 'com.android.tools.build:gradle:3.6.0'
+    }
+}
+
+allprojects {
+   repositories {
+      google()
+      jcenter()
+      flatDir {
+        dirs 'libs'
+      }
+   }
+}
+
+
+
+apply plugin: 'com.android.library'
+**APPLY_PLUGINS**
+
+dependencies {
+	//used by sdk to make API calls
+    implementation 'com.squareup.retrofit2:retrofit:2.6.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
+    //used by sdk to determine device activity and location
+    implementation 'com.google.android.gms:play-services-awareness:18.0.1'
+    implementation 'com.google.android.gms:play-services-location:17.1.0'
+
+	implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.gridlayout:gridlayout:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    implementation 'com.google.android.gms:play-services-base:17.4.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.1.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
+    implementation 'com.google.code.gson:gson:2.2.4'
+    implementation("com.squareup.okhttp3:okhttp:4.9.0")
+    implementation("com.google.android.gms:play-services-location:17.1.0")
+	
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+**DEPS**}
+
+android {
+    compileSdkVersion **APIVERSION**
+    buildToolsVersion '**BUILDTOOLS**'
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        minSdkVersion **MINSDKVERSION**
+        targetSdkVersion **TARGETSDKVERSION**
+        ndk {
+            abiFilters **ABIFILTERS**
+        }
+        versionCode **VERSIONCODE**
+        versionName '**VERSIONNAME**'
+        consumerProguardFiles 'proguard-unity.txt'**USER_PROGUARD**
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    aaptOptions {
+        ignoreAssetsPattern = "!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~"
+    }**PACKAGING_OPTIONS**
+}**REPOSITORIES****SOURCE_BUILD_SETUP**
+**EXTERNAL_SOURCES**
