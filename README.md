@@ -18,11 +18,17 @@ See it on Youtube [here](https://youtu.be/aDTd2pvtn-g).
 ![NextNavDash](https://user-images.githubusercontent.com/99516371/186556566-ef7e25cb-5811-4757-83ed-d77126c9ea2d.png)
 * Download the 3D model(s) from the Assets/Models folder in the project: DroneModel and Wing 01.
 * Go to echo3D console and click ["Add to Cloud"](https://docs.echo3D.co/quickstart/add-a-3d-model) and upload the models DroneModel and Wing 01 (You will repurpose the Wing 01 asset 4 times total for each drone wing in Unity).
-* [Uncheck](https://docs.echo3d.co/web-console/deliver-pages/security-page) the "Enable Secret Key" box in your echo3D console or [add the echo3D API key](https://docs.echo3d.co/unity/using-the-sdk) to the echo3D.cs script so the objects can appear in Unity.
 * Open the Demo scene in Unity.
-* [Set the API key](https://docs.echo3D.co/unity/using-the-sdk) and entry IDs on the echo3D script using the Inspector for the DroneModel and Wing 01 - Wing 04 objects in the Hierarchy. Wing 01 - Wing 04 will have the same API and entry ID since they are the same object. <br>
- ![APIKeyandEntryId](https://user-images.githubusercontent.com/99516371/186558297-4e4fad1a-bdd0-4a79-ad23-967800b44115.png)<br>
- ![Hierarchy](https://user-images.githubusercontent.com/99516371/186558308-f3ea600e-8aea-46c7-91f7-ce021aa057ed.png)<br>
+* [Set the API key](https://docs.echo3d.co/quickstart/access-the-console) and Entry IDs on the echo3D script using the Inspector for the objects.
+![APIKeyandEntryId](https://user-images.githubusercontent.com/99516371/195749269-f7a43477-b67a-49e8-a212-6abdb9c948fd.png)<br>
+![NEWAPIKeyandEntryID](https://user-images.githubusercontent.com/99516371/205407613-b746840f-8e8a-4ec8-b056-a680395dfab4.png)<br>
+
+* [Type your Secret Key](https://docs.echo3d.co/web-console/deliver-pages/security-page#secret-key) as the value for the parameter secKey in the file Packages/co.echo3D.unity/Runtime/Echo3DHologram.cs. _(Note: Secret Key only matters if you have the Security Key enabled). You can turn it off in the Security options in your echo3D console._
+![NEWSecKey2](https://user-images.githubusercontent.com/99516371/195749308-b2349a3b-7e43-4d3c-8f09-fbfa9d3cb0be.png)<br>
+* (Optional) To move or edit the assets live in your project, check the boxes for “Editor Preview” and “Ignore Model Transforms”. At the top of your project, click Echo3D > Load Editor Holograms <br>
+![EditorPreviewAndIgnoreModelTransforms](https://user-images.githubusercontent.com/99516371/195749348-dc0b06ad-efa6-4dbd-962f-0119b5c33ea0.png)<br>
+![LoadHolograms](https://user-images.githubusercontent.com/99516371/195749354-b2295183-f877-444a-af22-ed87ffb17705.png) <br>
+
 
 ## Run
 Press Play in Unity and see the echo3D drone appear from the cloud.
