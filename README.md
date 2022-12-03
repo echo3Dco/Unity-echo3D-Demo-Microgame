@@ -1,31 +1,36 @@
 # Unity-echo3D-NextNav-Demo
 Integrate the echo3D SDK into NextNav's Pinnacle demo so we can manage assets through the echo3D cloud.
 
-## Version
-[Unity 2021.2.7](https://unity3d.com/get-unity/download/archive)
+## Setup
+* Built with Unity 2020.3.25.  _(Note: The echo3D Unity SDK is supported in 2020.3.25 and higher.)_
+* Register for FREE at [echo3D](https://console.echo3D.co/#/auth/register).
+* Register for your free [NextNav](https://partner.nextnav.com/PartnerPortalRegisterNN?startURL=/s/&utm_campaign=Echo3D%20Portal%20Registrations&utm_source=echo3d&utm_medium=landing%20page) trial [here](https://partner.nextnav.com/PartnerPortalRegisterNN?startURL=/s/&utm_campaign=Echo3D%20Portal%20Registrations&utm_source=echo3d&utm_medium=landing%20page).
+* [Add the Unity SDK](https://medium.com/r/?url=https%3A%2F%2Fdocs.echo3d.co%2Funity%2Finstallation). Troubleshoot [here](https://docs.echo3d.com/unity/troubleshooting#im-getting-a-newtonsoft.json.dll-error-in-unity).
+* In your [NextNav](https://partner.nextnav.com/PartnerPortalRegisterNN?startURL=/s/&utm_campaign=Echo3D%20Portal%20Registrations&utm_source=echo3d&utm_medium=landing%20page) account, download and import their Unity Plugin. You can also clone our [repo](https://github.com/echo3Dco/Unity-echo3D-NextNav-Demo/) for the project. <br>
+![NextNavDash](https://user-images.githubusercontent.com/99516371/186556566-ef7e25cb-5811-4757-83ed-d77126c9ea2d.png) <br>
+* Clone this repo. 
 
-## Register
-Don't have an echo3D API key? Make sure to register for FREE at [echo3D](https://console.echo3D.co/#/auth/register). <br>
-Register for your free [NextNav](https://partner.nextnav.com/PartnerPortalRegisterNN?startURL=/s/&utm_campaign=Echo3D%20Portal%20Registrations&utm_source=echo3d&utm_medium=landing%20page) trial [here](https://partner.nextnav.com/PartnerPortalRegisterNN?startURL=/s/&utm_campaign=Echo3D%20Portal%20Registrations&utm_source=echo3d&utm_medium=landing%20page).
 
 ## Video
 See it on Youtube [here](https://youtu.be/aDTd2pvtn-g).
 
 ## Steps
-* [Install the echo3D Unity SDK](https://docs.echo3D.co/unity/installation). Troubleshoot [here](https://medium.com/r/?url=https%3A%2F%2Fdocs.echo3d.co%2Funity%2Ftroubleshooting%23im-getting-a-newtonsoft.json.dll-error-in-unity). <br>
-![echo3D SDK](https://user-images.githubusercontent.com/99516371/186556619-ffdab024-bee3-40f8-8876-d5210de03603.png)
-* In your [NextNav](https://partner.nextnav.com/PartnerPortalRegisterNN?startURL=/s/&utm_campaign=Echo3D%20Portal%20Registrations&utm_source=echo3d&utm_medium=landing%20page) account, download and import their Unity Plugin. You can also clone our [repo](https://github.com/echo3Dco/Unity-echo3D-NextNav-Demo/) for the project. <br>
-![NextNavDash](https://user-images.githubusercontent.com/99516371/186556566-ef7e25cb-5811-4757-83ed-d77126c9ea2d.png)
-* Download the 3D model(s) from the Assets/Models folder in the project: DroneModel and Wing 01.
-* Go to echo3D console and click ["Add to Cloud"](https://docs.echo3D.co/quickstart/add-a-3d-model) and upload the models DroneModel and Wing 01 (You will repurpose the Wing 01 asset 4 times total for each drone wing in Unity).
-* Open the Demo scene in Unity.
+* [Add these models](https://docs.echo3D.co/quickstart/add-a-3d-model) to the echo3D console from the Unity Assets/Models folder:  <br>
+      - DroneModel <br>
+      - Wing 01 <br>
+* Open the _Demo_ scene in Unity.
+* [Set the API key](https://docs.echo3d.co/quickstart/access-the-console) and Entry IDs for those same models in the Inspector. You will repurpose the Wing 01 asset 4 times total for each drone wing in Unity.<br>
+![APIKeyandEntryId](https://user-images.githubusercontent.com/99516371/195749269-f7a43477-b67a-49e8-a212-6abdb9c948fd.png)<br>
+![NEWAPIKeyandEntryID](https://user-images.githubusercontent.com/99516371/205407613-b746840f-8e8a-4ec8-b056-a680395dfab4.png)<br>
+
+
 * [Set the API key](https://docs.echo3d.co/quickstart/access-the-console) and Entry IDs on the echo3D script using the Inspector for the objects.
 ![APIKeyandEntryId](https://user-images.githubusercontent.com/99516371/195749269-f7a43477-b67a-49e8-a212-6abdb9c948fd.png)<br>
 ![NEWAPIKeyandEntryID](https://user-images.githubusercontent.com/99516371/205407613-b746840f-8e8a-4ec8-b056-a680395dfab4.png)<br>
 
 * [Type your Secret Key](https://docs.echo3d.co/web-console/deliver-pages/security-page#secret-key) as the value for the parameter secKey in the file Packages/co.echo3D.unity/Runtime/Echo3DHologram.cs. _(Note: Secret Key only matters if you have the Security Key enabled). You can turn it off in the Security options in your echo3D console._
 ![NEWSecKey2](https://user-images.githubusercontent.com/99516371/195749308-b2349a3b-7e43-4d3c-8f09-fbfa9d3cb0be.png)<br>
-* (Optional) To move or edit the assets live in your project, check the boxes for “Editor Preview” and “Ignore Model Transforms”. At the top of your project, click Echo3D > Load Editor Holograms <br>
+* (Recommended) To move or edit the assets live in your project, check the boxes for “Editor Preview” and “Ignore Model Transforms”. At the top of your project, click Echo3D > Load Editor Holograms <br>
 ![EditorPreviewAndIgnoreModelTransforms](https://user-images.githubusercontent.com/99516371/195749348-dc0b06ad-efa6-4dbd-962f-0119b5c33ea0.png)<br>
 ![LoadHolograms](https://user-images.githubusercontent.com/99516371/195749354-b2295183-f877-444a-af22-ed87ffb17705.png) <br>
 
